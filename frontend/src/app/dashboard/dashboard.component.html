@@ -1,0 +1,28 @@
+<div class="row  border-bottom ">
+    <div class="col-6">
+        <div class="nav d-flex align-items-center">
+        <div class="h5">Book Mate</div>
+        <div class="text-secondary nav-link"routerLink="books" routerLinkActive="text-success">Community</div>
+        <div class="text-secondary nav-link"routerLink="my-library" routerLinkActive="text-success">My Library</div>
+        <div class="text-secondary nav-link"routerLink="messages" routerLinkActive="text-success">Messages</div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="row d-flex align-items-center">
+            <div class="col-2"></div>
+            <div class="col-5">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <div class="col-2"> <div class="btn btn-success" routerLink="add-book">Add Book</div></div>
+            <div class="col-3 d-flex align-items-center">
+               <span class="btn btn-danger" (click)="logOut()"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #ffffff;"></i>Logout</span>
+                <img src="{{userDetails.profileImage}}" class="img-fluid  rounded-circle mx-2" height="40px" width="40px" routerLink="/settings">
+            </div>
+             
+        </div>
+        
+       
+      
+    </div>
+</div>
+<router-outlet></router-outlet>

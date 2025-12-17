@@ -1,0 +1,37 @@
+<app-nav></app-nav>
+<div class="container">
+    <div class="mt-2">
+            <i class="fa-solid fa-arrow-down fa-rotate-90 fa-sm   text-success"  ></i> <span class="text-success mx-2" routerLink="/">Back to Library</span>
+        </div>
+</div>
+<div class="container container-sm container-md justify-content-center d-flex p-4">
+    
+    <div class="border rounded p-4">
+        <div class=" h2">Welcome Back !</div>
+         <p class="text-secondary">
+            Log in to continue your reading journey.
+         </p>
+         <p class="text-danger">{{errorMsg.msg}}</p>
+        <form action="" class="form form-sm form-md d-flex" style="flex-direction: column;" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+           
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="you@example.com" id="email" formControlName="email">
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched ">
+                    <div class="alert alert-danger" *ngIf="loginForm.get('email')?.errors?.['required']">Email is Required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                 <div class="row">
+                    <div class="col-6 justify-content-start"><label for="password" class="form-label">Password</label></div>
+                    <div class="col-6 d-flex justify-content-end"><label for="password" class="form-label">Forget Password ?</label></div>
+                 </div>
+                <input type="password" class="form-control" placeholder=" Enter your password" id="password" formControlName="password">
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched ">
+                    <div class="alert alert-danger" *ngIf="loginForm.get('password')?.errors?.['password']">Password is Required</div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success" value="Login" >
+        </form>
+    </div>
+</div>

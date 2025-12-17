@@ -1,0 +1,40 @@
+<div class="container p-4">
+      
+        <div class="">
+            <i class="fa-solid fa-arrow-down fa-rotate-90 fa-sm   text-success"  ></i> <span class="text-success mx-2"  (click)="goBack()">Back to Library</span>
+
+        </div>
+        <div class="h2" style="font-weight: 800; font-family: sans-serif;">My Books</div>
+        <table class="table border rounded">
+            <thead>
+                <tr>
+                     <td>Books</td>
+                     <td>Status</td>
+                     <td>Action</td>
+                </tr>
+            </thead>
+            <tr *ngFor="let b of myBooks" class="border-bottom">
+                <td><img src="{{b.coverImagePaths[0]}}" height="150px"  width="100px">
+                <span class="">{{b.title}}
+                      <span class="text-secondary mx-2">by {{b.author}}</span>
+                </span></td>
+                 <td>
+                <div [ngClass]="b.status == 'Available' ? 'btn btn-success text-success' : 'btn btn-danger text-danger'">
+                {{ b.status }}
+                </div>
+
+               </td>
+
+               <td>
+                <span class="mx-2">
+                    <i class="fa-solid fa-pencil"></i>Edit
+                </span>
+                <span class="mx-2 text-danger">
+                     <i class="fa-solid fa-trash" style="color: #f20202;"></i> Delete
+                </span>
+               </td>
+                
+            </tr>
+           
+        </table>
+</div>

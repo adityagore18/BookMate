@@ -1,0 +1,17 @@
+<div class="container p-4">
+      
+        <div class="">
+            <i class="fa-solid fa-arrow-down fa-rotate-90 fa-sm   text-success"  ></i> <span class="text-success mx-2"  (click)="goBack()">Back to Library</span>
+           
+        </div>
+        <div class="row">
+            <div class="col-6 d-flex justify-content-end">
+                <div class="btn btn-outline-success" routerLink="incoming-requests" routerLinkActive="btn-success text-light">Incoming Requests</div>
+                
+            </div>
+            <div class="col-6 d-flex justify-content-start">
+                <div class="btn btn-md btn-outline-success" routerLink="borrow-requests" routerLinkActive="btn-success text-light"> Borrow Requests</div>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+</div>

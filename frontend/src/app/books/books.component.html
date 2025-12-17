@@ -1,0 +1,48 @@
+<div class="container-fluid ">
+    <div class="row p-2">
+        <div class="col-12 col-sm-4 col-md-2 border-end p-sm-1 p-md-2 " >
+            <div class="p-2 border rounded" style="background-color: var(--bs-light-bg-subtle);">
+                <div class="h5">Filters</div>
+                <div class="mb-2">
+                    <p class="text-secondary">Filter by Category</p>
+                    <select name="category"  name="category" [(ngModel)]="category" class="form-select  " style="background-color: var(--bs-light);">
+                        <option *ngFor="let i of categoryList" value="{{i}}">{{i}}</option>
+                      
+                    </select>
+                     
+                </div>
+                 <div class="mb-2">
+                    <p class="text-secondary">Sort by</p>
+                    <select name="category"  name="sorting" [(ngModel)]="sorting" class="form-select" style="background-color: var(--bs-light);">
+                        <option *ngFor="let i of sortOptions" value="{{i}}">{{i}}</option>
+                      
+                    </select>
+                     
+                </div>
+                <div class="mb-2">
+                    <p class="text-secondary">Status<br>
+                    <input type="radio" ><span class="text-dark">Available</span> 
+                </div>
+                <div class="btn btn-primary d-flex  justify-content-center">Apply Filters</div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-8 col-md-8 d-flex  justify-content-center">
+           <div class="p-2">
+             <div class="h3">Browse Our Community's Books</div>
+            <p class="text-secondary">Find your next read, share by readers like you.</p>
+            <div class="row px-md-5">
+                <div class="col-12 col-sm-6 col-md-3 p-1" *ngFor="let b of service.books">
+                    <div  [routerLink]="['/book-details',b._id]">
+                         <img src="{{b.coverImagePaths[0]}}" class="rounded img-fluid">
+                         <div class="p-1">
+                            <span class="h6">{{b.title}}</span>
+                            <br>
+                            <small class="text-secondary">by {{b.author}}</small>  </div>
+                        
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+</div>

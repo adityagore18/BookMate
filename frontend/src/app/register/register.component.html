@@ -1,0 +1,54 @@
+<app-nav></app-nav>
+
+<div class="container">
+    <div class="mt-2">
+            <i class="fa-solid fa-arrow-down fa-rotate-90 fa-sm   text-success"  ></i> <span class="text-success mx-2" routerLink="/">Back to Library</span>
+        </div>
+</div>
+<div class="container container-sm container-md justify-content-center d-flex p-4">
+    <div class="border rounded p-4">
+        <div class=" h2">Join our community</div>
+         <p class="text-secondary">
+           create account and start sharing and borrowing.
+         </p>
+         <p class="text-danger">{{errorMsg}}</p>
+         <p class="text-success">{{successMsg}}</p>
+        <form action="" class="form form-sm form-md d-flex" style="flex-direction: column;" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+             <div class="mb-3">
+                <label for="name" class="form-label"> Full Name</label>
+                <input type="text" class="form-control" placeholder="Jon Doe" id="name" formControlName="name">
+                <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+                    <div *ngIf="registerForm.get('name')?.errors?.['required']" class="alert alert-danger">Name is Required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="you@example.com" id="email" formControlName="email">
+                <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                    <div *ngIf="registerForm.get('email')?.errors?.['required']" class="alert alert-danger">Email is required!</div>
+                    <div *ngIf="registerForm.get('email')?.errors?.['email']">Invalid Email!</div>
+                </div>
+
+
+            </div>
+            <div class="mb-3">
+                 <label for="password" class="form-label">Password</label>
+                <input type="text" class="form-control" placeholder=" Enter your password" id="password" formControlName="password">
+                <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                    <div *ngIf="registerForm.get('password')?.errors?.['required']" class="alert alert-danger">Password is Required</div>
+                </div>
+            </div>
+
+             <div class="mb-3">
+                 <label for="password" class="form-label"> Confirm Password</label>
+                <input type="password" class="form-control" placeholder=" Enter your password" id="cpassword" [(ngModel)]="cpassword"   [ngModelOptions]="{standalone: true}">
+            </div>
+
+           <div class="d-flex align-items-center  mx-2 my-2">
+             <input type="checkbox" class=" mx-1" (click)="isTermSOk=!isTermSOk" > I agree to Term of Service and Privacy and Policy
+           </div>
+            
+            <input type="submit" class="btn btn-success" value="Login"[disabled]="isTermSOk!=false?false:true"  >
+        </form>
+    </div>
+</div>

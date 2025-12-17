@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row" style="height: 100vh;">
+        <div class="col-2 border-end" >
+               <div class="d-flex align-items-center mt-2">
+                <div>
+                    <img [src]="userDetails.profileImage" alt="" class=" rounded-circle mx-1" height="50px" width="50px">
+                </div>
+                <div style="position: relative;">
+                    <div class="h6">{{userDetails.name}}</div>
+                    <span class="text-secondary" style="position:fixed; top: 40px;">{{userDetails.email}}</span>
+                </div>
+               </div>
+               <div class="mt-4">
+                  <div class="nav flex-column">
+                    <div class="nav-link text-secondary" routerLink="/dashboard/books" routerLinkActive="border rounded bg-success text-light"><i class="fa-solid fa-house mx-1"></i>Home</div>
+                    <div class="nav-link text-secondary" routerLink="profile" routerLinkActive="border rounded bg-success text-light"><i class="fa-regular fa-user mx-1"></i>Profile</div>
+                    <div class="nav-link text-secondary" routerLink="add-book" routerLinkActive="border rounded bg-success text-light"><i class="fa-solid fa-plus mx-1"></i>Add Book</div>
+                    <div class="nav-link text-secondary" routerLink="my-library" routerLinkActive="border rounded bg-success text-light"><i class="fa-solid fa-book mx-1"></i>My Library</div>
+                    <div class="nav-link text-secondary" routerLink="messages" routerLinkActive="border rounded bg-success text-light"><i class="fa-regular fa-message mx-1"></i>Messages</div>
+                    <div class="nav-link text-secondary" routerLink="books" routerLinkActive="border rounded bg-success text-light"><i class="fa-solid fa-user-group mx-1"></i>Community</div>
+                    <div class="nav-link text-secondary" routerLink=""><i class="fa-solid fa-gear mx-1"></i>Settings</div>
+                  </div>
+               </div>
+               <div class="fixed-bottom mx-2 mb-2">
+                <i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #ababab;"></i>  <span class="text-secondary h6" (click)="logOut()">Logout</span>
+               </div>
+
+        </div>
+        <div class="col-10 " style="background-color: whitesmoke;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

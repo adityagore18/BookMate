@@ -1,0 +1,26 @@
+$xs: 576px;  // small devices
+$sm: 768px;  // tablets
+$md: 992px;  // small laptops
+$lg: 1200px; // desktops
+$xl: 1400px; // large screens
+
+
+@media screen and (max-width: $sm) {
+   .img-box{
+     width: 400px;
+     height: 500px;
+     
+   }
+    
+    
+}
+
+@media screen and (max-width: $md) {
+   .img-box{
+     width: 512px;
+     height: 512px;
+   }
+   .right{
+        
+   }
+}

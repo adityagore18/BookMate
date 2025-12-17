@@ -1,0 +1,56 @@
+<div class="contianer-fluid d-flex  justify-content-center">
+    <div class="border rounded mt-2  flex-column p-2" style="height: 750px; width: 500px; background-color: white;">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-success">
+                Joined   {{userDetails.joinedDate| date:'d-MMM-y'}} 
+            </button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <img [src]="profileUrl==''? userDetails.profileImage:profileUrl" height="100px" width="100px" class="rounded-circle">
+            
+        </div>
+        <div class="h4 text-center">{{userDetails.name}}</div>
+        <div class="text-center text-secondary">{{userDetails.email}}</div>
+        <hr class="mx-4">
+        <div class="h5 text-center">Contact Info</div>
+        <div class="mx-5">
+            <div class="d-flex align-items-center mb-3" >
+                     <i class="fa-solid fa-envelope"></i>
+                     <div class="mx-2">{{userDetails.email}}</div>
+            </div>
+            <div class="d-flex mb-3 align-items-center" >
+                     <i class="fa-solid fa-phone text-center"></i>  
+                     <div class="mx-2">{{userDetails.phone==undefined?'':userDetails.phone}}</div>
+            </div>
+             <div class="d-flex align-items-center" >
+                     <i class="fa-solid fa-location-dot"></i>
+                     <div class="mx-2">{{userDetails.address==undefined?'':userDetails.address}}</div>
+            </div>
+            
+        </div>
+        <hr class="mx-4">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3   mx-5 align-items-center">
+                <label for="phone" class="form-label mx-2">Phone No</label>
+                <input type="text" id="phone" class="form-control" [value]="userDetails.phone==undefined?'':userDetails.phone" pattern="[0-9]+" formControlName="phone">
+                  <div *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched">
+                    <div *ngIf="profileForm.get('phone')?.errors?.['required']" class="alert alert-danger">Phone Number is Required</div>
+                  </div>
+            </div>
+            <div class="mb-3  mx-5">
+                <label for="address"  class="form-label mx-2">Add Address</label>
+                <textarea class="form-control" [value]="userDetails.address==undefined?'':userDetails.address" placeholder="Recipient Name, Street Address (Apt/Suite), City, State/Province, ZIP/Postal Code, COUNTRY" formControlName="address"></textarea>
+                <div *ngIf="profileForm.get('address')?.invalid && profileForm.get('address')?.touched">
+                    <div *ngIf="profileForm.get('address')?.errors?.['required']" class="alert alert-danger">Addree Required and make sure in above format (comma seperated)</div>
+                  </div>
+            </div>
+            <div class="mb-3  mx-5">
+                <label for="profileImage" class="form-label mx-2">Upload Profile Photo</label>
+                 <input type="file" class="form-control" id="profileImage" (change)="getFile($event)">
+            </div>
+            <div class="d-flex justify-content-center">
+                <input type="submit" class="btn btn-success" value="Save Data">
+            </div>
+        </form>
+    </div>
+</div>
