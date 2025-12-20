@@ -14,6 +14,7 @@ import { IncomingRequestComponent } from './incoming-request/incoming-request.co
 import { BorrowRequestComponent } from './borrow-request/borrow-request.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RequestSucessComponent } from './dashboard/request-sucess/request-sucess.component';
 const routes: Routes = [
   {
     path:'',
@@ -62,6 +63,9 @@ const routes: Routes = [
       path:'my-library',
       component:MyLibraryComponent
     },{
+        path:'request-success/:id',
+        component:RequestSucessComponent,
+      },{
       path: '', redirectTo: 'books', pathMatch: 'full' 
     }
   ]

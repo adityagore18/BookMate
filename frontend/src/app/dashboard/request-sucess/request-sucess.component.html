@@ -1,0 +1,76 @@
+<div class="container justify-content-center">
+      <div class=" border rounded mt-4 p-4" >
+          <div class="align-items-center d-flex" style="flex-direction: column;">
+            <i class="fa-solid fa-circle-check fa-2xl text-success m-3"></i>
+            <div class="h1 text-center" >Request Send Successfully !
+              <p class="h5 text-secondary">We've notified <span class="text-dark">{{ownerDetails.name}}</span>. You'll get an update once they </p>
+              <p class="h5 text-secondary">approve your request.</p>
+            </div>
+          </div>
+        <div class="row p-2">
+        <div class="col-7 col-md-5 border">
+          <div class="text-secondary text-uppercase ">Request Summary</div>
+          <div class="row p-2">
+            <div class="col-4 col-sm-4 col-md-4 ">
+              <img [src]="bookDetails.coverImagePaths[0]" class="img-fluid">
+            </div>
+            <div class="col-8 col-sm-8 col-md-8 ">
+              <div class="h4">{{bookDetails.title}}
+                 <p class="text-secondary h6">by {{bookDetails.author}}</p>
+              </div>
+              <div class="m-2 rounded" style="background-color: lightgray;">
+                <div class="p-2">
+                 <i class="fa-solid fa-calendar-days text-success mx-2"></i> {{requestDetails.requestDate|date:'MMM d,y'}}-{{returnDate|date:'MMM d, y'}}
+
+                </div>
+                 <div class="p-2">
+                   <i class="fa-solid fa-location-dot text-success mx-2"></i>{{requestDetails.shippingAddress}}
+                 </div>
+              </div>
+              <div>
+                <img [src]="ownerDetails.profileImage" height="40px" width="40px" style="border-radius:50% ;"> <span class="mx-2 text-secondary">Lender:</span><span class="text-dark">{{ownerDetails.name}}</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-5 col-md-5 border">
+          <div class="text-secondary text-uppercase ">Status Tracker</div>
+          <div class="m-1 d-flex ">
+              <div><i class="fa-solid fa-circle-check fa-lg text-success mx-2"></i></div>
+              <div class="h6">
+                Request Sent
+                <p class="text-secondary" style="font-size: 11px;">{{requestDetails.requestDate | date:'MMM d,y h:m a'}}</p>
+              </div>
+          </div>
+          <div class="m-1 d-flex ">
+              <div *ngIf="requestDetails.status=='Pending'"><i class="fa-regular fa-circle-check fa-lg text-success mx-2"></i></div>
+              <div *ngIf="requestDetails.status!='Pending'"><i class="fa-solid fa-circle-check fa-lg text-success mx-2"></i></div>
+              <div class="h6" *ngIf="requestDetails.status=='Pending'">
+                Pendding Approval
+                <p class="text-secondary" style="font-size: 11px;">Wating for lender..</p>
+              </div>
+              <div class="h6" *ngIf="requestDetails.status!='Pending'">
+                Pendding Approval
+                <p class="text-secondary" style="font-size: 11px;">Request Accepted</p>
+              </div>
+          </div>
+          <div class="m-1 d-flex ">
+              <div><i class="fa-regular fa-circle-check fa-lg text-secondary mx-2"></i></div>
+              <div class="h6 text-secondary">
+                Ready For Pickup
+                <!-- <p class="text-secondary" style="font-size: 11px;">{{requestDetails.requestDate | date:'MMM d,y h:m a'}}</p> -->
+              </div>
+          </div>
+
+        </div>
+        
+        </div>
+       
+      </div>
+       <div class=" justify-content-center d-flex mt-5">
+          <div class="btn btn-success text-dark mx-2"  (click)="goToMyRequest()">Go to MyRequests <i class="fa-solid fa-arrow-right mx-1"></i> </div>
+        <div class="btn btn-outline-success">Home</div>
+        </div>
+      
+</div>

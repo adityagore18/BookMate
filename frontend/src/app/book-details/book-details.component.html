@@ -15,27 +15,90 @@
               
             </div>
             <div class="right mx-2">
-                  <div style="font-size:40px; font-weight:600; font-family:sans-serif;" >{{bookDetails[0].title}}</div>
-                  <div class="h3 text-success">
-                    by {{bookDetails[0].author}}
-                  </div>
-                  <div>
-                    <div class="btn btn-success ">{{bookDetails[0].category}}</div>
-                    <span class="text-success mx-1 ">Owned by</span><small   class=" justify-content-bottom">@{{bookDetails[0].ownerId}}</small>
-                  </div>
-                  
-                  <div class="d-flex align-items-center">
-                     <i class="fa-solid fa-circle fa-beat-fade text-success" ></i>
-                   <span class="h3 text-success mx-2">{{bookDetails[0].status}}</span>
-                  </div>
-                  <div class=" align-items-start">
-                    <div class=" btn btn-md btn-success  d-flex justify-content-center  " style="margin-right: 30%;">Request to Borrow/Rent</div>
-                  </div>
+                 <div *ngIf="!isClickRequest">
+                    <div style="font-size:40px; font-weight:600; font-family:sans-serif;" >{{bookDetails[0].title}}</div>
+                    <div class="h3 text-success">
+                      by {{bookDetails[0].author}}
+                    </div>
+                    <div>
+                      <div class="btn btn-success ">{{bookDetails[0].category}}</div>
+                      <span class="text-success mx-1 ">Owned by</span><small   class=" justify-content-bottom">@{{bookDetails[0].ownerId}}</small>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                      <!-- fa-solid fa-circle fa-beat-fade text-success -->
+                      <i  [classList]="bookDetails[0].status=='Available'?'fa-solid fa-circle fa-beat-fade text-success':'fa-solid fa-circle fa-beat-fade text-danger'" ></i>
+                    <span   [classList]="bookDetails[0].status=='Available'?'h3 text-success mx-2':'h3 text-danger mx-2'">{{bookDetails[0].status}}</span>
+                    </div>
+                    <div class=" align-items-start" >
+                      <div class=" btn btn-md btn-success  d-flex justify-content-center  " style="margin-right: 30%;" (click)="onClickRequest()">Request to Borrow/Rent</div>
+                    </div>
 
-                  <div class="h5 mt-5">Description</div>
-                  <p class="text-success">
-                    {{bookDetails[0].description}}
-                  </p>
+                    <div class="h5 mt-5">Description</div>
+                    <p class="text-success">
+                      {{bookDetails[0].description}}
+                    </p>
+                 </div>
+                 <div *ngIf="isClickRequest">
+                  <div class="border rounded m-2 p-2">
+                    <div class="d-flex justify-content-end"><i class="fa-solid fa-xmark" style="color: #f70808;" (click)="cancel()"></i></div>
+                      <div>
+                         <div class="h1"><i class="fa-solid fa-file" style="color: #4be137;"></i>Borrow Request</div>
+                        <p class="text-success">Fill in the details below to request this book from the owner.</p>
+
+                      </div>
+                      <div>
+                        <div class="text-uppercase h6">Request Type</div>
+                      </div>
+                      <div class="row p-2">
+                         <!-- BORROW -->
+                        <div
+                          class="col-6 rounded p-2 border"
+                          [ngClass]="{
+                            'border-success bg-success-subtle': isborrow,
+                            'border-secondary': !isborrow
+                          }"
+                          (click)="callBorrow()"
+                        >
+                          <i class="fa-solid fa-handshake text-success"></i>
+                          <h6>Borrow</h6>
+                          <p class="text-secondary">{{bookDetails?.[0]?.price| currency:'INR'}}  </p>
+                        </div>
+
+                        <!-- RENT -->
+                        <div
+                          class="col-6 rounded p-2  border"
+                          [ngClass]="{
+                            'border-success bg-success-subtle': !isborrow,
+                            'border-secondary': isborrow
+                          }"
+                          (click)="callRent()"
+                        >
+                          <i class="fa-solid fa-money-bills text-success"></i>
+                          <h6>Rent</h6>
+                          <p class="text-secondary">{{bookDetails?.[0]?.rentPerMonth | currency:'INR'}} / Month </p>
+                        </div>
+
+                        <div class="mb-3">
+                          <p class="text-uppercase h6">Return Date</p>
+                          <input type="number" class="form-control" [disabled]="isborrow?true:false" [(ngModel)]="noOfMonth">
+                        </div>
+
+                         <div class="mb-3">
+                          <p class="text-uppercase h6">Shipping Address </p>
+                          <div class="rounded" style="background-color: lightgray;">
+                            <i class="fa-solid fa-truck text-success mx-2"></i>
+                            <textarea  class="form-control" placeholder="Enter your full delivery address(Street, City, Zip Code)..." style="outline: none;" style="background-color: lightgray;" [(ngModel)]="shippingAddress"></textarea>
+                          </div>
+                        </div>
+                        <div class="btn btn-success" (click)="submitRequest()">
+                          Submit Request <i class="fa-solid fa-paper-plane fa-rotate-by" style="--fa-rotate-angle: 45deg;"></i>
+                        </div>
+                        <p class="text-center text-success">By submitting, you agree to our Trems of Service regarding book handling and returns.</p>
+                      </div>
+                      
+                  </div>
+                 </div>
             </div>
             
         </div>

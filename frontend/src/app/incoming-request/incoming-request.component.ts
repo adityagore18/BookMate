@@ -12,7 +12,7 @@ export class IncomingRequestComponent {
    myRequests:Request[]=[];
    ownerName=""
    constructor(private bookService:BookService){
-    bookService.getBorrowRequest().subscribe((data)=>{
+    bookService.getIncomingRequest().subscribe((data)=>{
       console.log(data)
       this.myRequests=data as Request[];
     })

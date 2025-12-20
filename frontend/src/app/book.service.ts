@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BookDetails } from './book-details.model';
+import { Request } from './request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -164,5 +165,13 @@ export class BookService {
    addBook(bookData:any){
     return this.http.post(this.baseUrl+'/add',bookData);
    }
+
+   makeRequest(myRequest:Request){
+    return this.http.post(this.baseUrl2+'/create',myRequest);
+   }
+
+   getRequest(id:String){
+     return this.http.get(this.baseUrl2+'/my-requests/'+id);
+   } 
    
 }

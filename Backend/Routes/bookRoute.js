@@ -25,6 +25,17 @@ router.get('/books' ,(req,res)=>{
 router.get('/books/:id',auth,(req,res)=>{
     Book.findById(req.params.id)
     .then((data)=>{
+        // console.log(req.user.id)
+        res.send(data);
+    })
+    .catch(err=>res.send(err));
+
+}) 
+
+
+router.put('/books/:id',(req,res)=>{
+    Book.findByIdAndUpdate(req.params.id,req.body,{})
+    .then((data)=>{
         console.log(req.user.id)
         res.send(data);
     })

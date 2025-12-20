@@ -1,1 +1,39 @@
- 
+<div class="container">
+    <div class="h3 mt-1">My Borrow/Rent Requests</div>
+    <p class="text-secondary" style="font-size: 12px;" >Track the status of all your book borrowing Requests here</p>
+    <table class="table border table-striped">
+        <thead style="background-color:  gray;">
+            <tr>
+                <th>Book</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Date Requeted</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tr *ngFor="let r of myRequests">
+            <td>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <img [src]="r.bookDetails.coverImagePaths[0]" height="100px">
+                    </div>
+                    <div class="h6 mx-2">{{r.bookDetails.title}}
+                        <p class="text-secondary">{{r.bookDetails.author}}</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="text-secondary">{{r.ownerDetails.name}}</p>
+            </td>
+            <td>
+                <div class="btn btn-warning text-warning">{{r.status}}</div>
+            </td>
+            <td>
+                {{r.requestDate | date:'MMM d,y'}}
+            </td>
+            <td>
+                <p class="text-secondary"  [routerLink]="['/dashboard/request-success',r._id]">View Details</p>
+            </td>
+        </tr>
+    </table>
+</div>

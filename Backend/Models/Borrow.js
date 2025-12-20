@@ -8,7 +8,7 @@ const barrowSchema=new mongoose.Schema({
     requestDate:Date,
     status:String,
     requestType:String,
-    returnDate:String,
+    noOfMonth:Number,
     shippingAddress:String
 })
 

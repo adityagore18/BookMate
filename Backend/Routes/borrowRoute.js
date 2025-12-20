@@ -15,6 +15,14 @@ router.get('/requests/my-requests',auth,(req,res)=>{
      .catch(err=>console.log(err));
 })
 
+router.get('/requests/my-requests/:id',auth,(req,res)=>{
+    Borrow.findById(req.params.id)
+     .then((data)=>{
+        res.send(data);
+     })
+     .catch(err=>console.log(err));
+})
+
 router.get('/requests/received',auth,(req,res)=>{
     Borrow.find({ownerId:req.user.id})
     .then((data)=>{
@@ -48,14 +56,17 @@ router.post('/requests/create',auth,async (req,res)=>{     try{
 
       const bookInstance= await Book.findById(req.body.bookId,{status:'Available'});
       if(bookInstance) { 
+        console.log('*************************************')
+      console.log(bookInstance)
       const newRequest=new Borrow({
         bookId:bookInstance._id,
         requesterId:req.user.id,
-        ownerId:bookInstance.ownerId,
+        ownerId:req.body.ownerId,
         requestDate:req.body.requestDate,
         status:req.body.status,
         requestType:req.body.requestType,
-        returnDate:req.body.returnDate
+        noOfMonth:req.body.noOfMonth,
+        shippingAddress:req.body.shippingAddress
       })
 
       await Book.findByIdAndUpdate(bookInstance._id,{status:"Not Available"});

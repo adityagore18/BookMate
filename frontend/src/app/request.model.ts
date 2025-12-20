@@ -5,5 +5,7 @@ export class Request {
     requestDate:Date=new Date();
     status:string='';
     requestType:string='';
-    returnDate:string='';
+    noOfMonth:number=0;
+    shippingAddress:string='';
+
 }

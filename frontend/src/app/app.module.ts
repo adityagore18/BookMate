@@ -20,6 +20,7 @@ import { BorrowRequestComponent } from './borrow-request/borrow-request.componen
 import { IncomingRequestComponent } from './incoming-request/incoming-request.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RequestSucessComponent } from './dashboard/request-sucess/request-sucess.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { ProfileComponent } from './profile/profile.component';
        BorrowRequestComponent,
        IncomingRequestComponent,
        SettingsComponent,
-       ProfileComponent
+       ProfileComponent,
+       RequestSucessComponent
   ],
   imports: [
     BrowserModule,
